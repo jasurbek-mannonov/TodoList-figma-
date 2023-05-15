@@ -12,9 +12,9 @@
     <div class="container">
         <h2>ToDoList</h2>
         <div class="header">
-            <button class="active">Barchasi</button>
-            <button>Bajarilganlar</button>
-            <button>Bajarilmaganlar</button>
+            <button class="allFilter" onclick="filterTasks('all')">Barchasi</button>
+            <button class="doneFilter" onclick="filterTasks(1)">Bajarilganlar</button>
+            <button class="waitingFilter" onclick="filterTasks(0)">Bajarilmaganlar</button>
         </div>
         <hr>
         <div class="tasks">

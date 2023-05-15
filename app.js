@@ -4,6 +4,10 @@ let tasksDiv = document.querySelector('.tasks')
 let modal = document.querySelector('.modal')
 let inputs = document.querySelectorAll('.modal [name]')
 
+let allFilter = document.querySelector('.allFilter')
+let doneFilter = document.querySelector('.doneFilter')
+let waitingFilter = document.querySelector('.waitingFilter')
+
 let tasks = []
 
 const render = (list) => {
@@ -23,7 +27,6 @@ const render = (list) => {
             <div class="type">Ish</div>
         </div>
     </div>
-
         `
     })
 }
@@ -44,6 +47,7 @@ const deleteTask = (index) => {
         save()
     }
 }
+
 
 if(localStorage.getItem('tasks')){
     tasks = JSON.parse(localStorage.getItem('tasks')) 
@@ -77,4 +81,18 @@ const filterTasks = (status) => {
     //     render([...tasks.filter(task => task.status == status)])
     //  }
       render (status == 'all' ? tasks : [...tasks.filter(task => task.status == status)])
+      if (status == 'all'){
+        allFilter.classList.add('active')
+        doneFilter.classList.remove('active')
+        waitingFilter.classList.remove('active')
+    }else if(status == '1'){
+          allFilter.classList.remove('active')
+          waitingFilter.classList.remove('active')
+          doneFilter.classList.add('active')
+      }else{
+        doneFilter.classList.remove('active')
+        allFilter.classList.remove('active')
+        waitingFilter.classList.add('active')
+      }
 }
+
