@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <h2>ToDoList</h2>
+        <div class="header">
+            <button class="active">Barchasi</button>
+            <button>Bajarilganlar</button>
+            <button>Bajarilmaganlar</button>
+        </div>
+        <hr>
+        <div class="tasks">
+    </div>
+    <div class="modal">
+        <div class="title center">
+            <div class="closeBtn" onclick="toggle()">
+                <i class="fa-sharp fa-solid fa-xmark"></i>
+            </div>
+            Yangi topshiriq
+        </div>
+        <input type="text" name="title" placeholder="Topshiriq sarlavhasi">
+        <textarea name="text" rows="5" placeholder="Topshiriq matni"></textarea>
+        <input type="date" name="deadline" placeholder="Oxirgi muddat">
+        <select name="type">
+            <option value="shaxsiy">shaxsiy</option>
+            <option value="ish">ish</option>
+            <option value="oila">oila</option>
+            <option value="uy">uy</option>
+            <option value="boshqa">boshqa</option>
+        </select>
+        <div class="bottom center">
+            <button onclick="add()" class="addBtn">Qo'shish</button>
+        </div>
+    </div>
+    <button class="add" onclick="toggle()">+</button>
+
+    <script src="app.js">
+    </script>
+</body>
+</html>

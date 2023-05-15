@@ -1,0 +1,183 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto';
+    background-color: #E5E5E5;
+}
+
+body.openModal,
+.container.openModal
+{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container{
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 30px 20px;
+    background-color: #fff;
+}
+
+.container h2{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28.13px;
+}
+
+.header{
+    text-align: center;
+}
+
+.header button{
+    border: none;
+    background-color: transparent;
+    width: 117px;
+}
+
+.header button.active{
+    background-color: #FF0000;
+    color: #fff;
+    width: 117px;
+    height: 28px;
+    border: none;
+}
+
+.tasks{
+    max-width: 450px;
+    margin: auto;
+    padding: 30px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: auto;
+}
+
+.task{
+    padding: 10px;
+}
+
+.done{
+    background-color: #9FE3E8;
+}
+
+.waiting{
+    background-color: #F4A4A9;
+}
+
+.task .title{
+    font-size: 18px;
+    line-height: 21.09px;
+    font-weight: 700;
+    padding: 10px 0px;
+    margin-bottom: 12px;
+}
+
+.task .closeBtn{
+    margin-top: -25px;
+    margin-right: 10px;
+}
+
+.bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 0px;
+}
+
+.bottom.center{
+    justify-content: center;
+    gap: 10px; 
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.09px;
+}
+
+.add{
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 40px;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    border: unset;
+    font-size: 40px;
+    font-weight: 700;
+    background-color: #2CB932;
+    color: #fff;
+    cursor: pointer;
+}
+
+.modal{
+    position: fixed;
+    width: 371px;
+    height: 440px;
+    background-color: #fff;
+    z-index: 1;
+    top: -500px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;   
+    padding: 30px;
+    gap: 15px; 
+    transition: .5s linear all;
+}
+
+.modal.open{
+    top: 75px;
+}
+
+.modal .title{
+    font-weight: 18px;
+    line-height: 21.09px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.closeBtn{
+    /* float: right;    */
+    text-align: right;
+}
+
+.closeBtn .fa-xmark{
+    font-weight: 800;
+    position: absolute;
+    margin-top: -20px;
+}
+
+.closeBtn .fa-pencil{
+    margin-left: -20px;
+    position: absolute;
+    margin-top: -20px;
+}
+
+.modal input, select, textarea{
+    padding: 10px;
+    border-color: #7A7A7A;
+    border-radius: 15px;
+    resize: none;
+}
+
+button, .closeBtn{
+    cursor: pointer;
+}
+
+.addBtn{
+    background-color: #7ED369;
+    width: 168px;
+    height: 34px;
+    border-radius: 15px;
+    border: none;
+}
+
