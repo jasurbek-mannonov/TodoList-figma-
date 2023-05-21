@@ -9,6 +9,7 @@ let doneFilter = document.querySelector('.doneFilter')
 let waitingFilter = document.querySelector('.waitingFilter')
 
 let tasks = []
+let url = 'http://localhost:3000/tasks'
 
 const render = (list) => {
     tasksDiv.innerHTML = ''
@@ -31,34 +32,61 @@ const render = (list) => {
     })
 }
 
-const save = () => {
-    localStorage.setItem('tasks', JSON.stringify(tasks))
-    render(tasks)
-}
-
 const changeStatus = (index) => {
     tasks[index].status = tasks[index].status == 0 ? 1 : 0
-    save()
+    fetch(`${url}/${tasks[index].id}`,{
+        method: "PUT",
+        body: JSON.stringify(tasks[index]),
+        headers: {
+            'Content-type': 'application/json'
+        }
+        
+    }).then(res => res.json())
+    .then(() => {
+        render(tasks)
+    })
 }
-
 const deleteTask = (index) => {
     if (confirm("Qaroringiz qat'iymi?")) {
-        tasks.splice(index, 1)
-        save()
+        fetch(`${url}/${tasks[index].id}`,{
+            method: 'DELETE',
+            headers: {
+                'Content-type':'application/json'
+            }
+        }).then(() => {
+            tasks.splice(index, 1)
+            render(tasks)
+        })
+        
     }
 }
 
-
-if(localStorage.getItem('tasks')){
-    tasks = JSON.parse(localStorage.getItem('tasks')) 
-    render(tasks)
-}
+fetch(url)
+    .then(res => res.json())
+    .then(list => {
+        tasks = list
+        render(tasks)
+    })
 
 
 const toggle = () => {
     modal.classList.toggle('open')
     body.classList.toggle('openModal')
     containerDiv.classList.toggle('openModal')
+}
+
+const post = (task) => {
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify(task),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+    .then(newTask => {
+        tasks.push(newTask)
+        render(tasks)
+    })
 }
 
 const add = () => {
@@ -68,10 +96,8 @@ const add = () => {
         el.value = ''
     })
     task.status = 0
-    tasks.push(task)
-    save()
+    post(task)
     toggle()
-    alert("Yangi task qo'shildi")
 }
 
 const filterTasks = (status) => {
@@ -80,19 +106,18 @@ const filterTasks = (status) => {
     //  } else{
     //     render([...tasks.filter(task => task.status == status)])
     //  }
-      render (status == 'all' ? tasks : [...tasks.filter(task => task.status == status)])
-      if (status == 'all'){
+    render(status == 'all' ? tasks : [...tasks.filter(task => task.status == status)])
+    if (status == 'all') {
         allFilter.classList.add('active')
         doneFilter.classList.remove('active')
         waitingFilter.classList.remove('active')
-    }else if(status == '1'){
-          allFilter.classList.remove('active')
-          waitingFilter.classList.remove('active')
-          doneFilter.classList.add('active')
-      }else{
+    } else if (status == '1') {
+        allFilter.classList.remove('active')
+        waitingFilter.classList.remove('active')
+        doneFilter.classList.add('active')
+    } else {
         doneFilter.classList.remove('active')
         allFilter.classList.remove('active')
         waitingFilter.classList.add('active')
-      }
+    }
 }
-
